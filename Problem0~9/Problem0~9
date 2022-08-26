@@ -1,0 +1,138 @@
+**Problem 0,** 
+design a circut for output port as high without input port.
+
+*Exercise:
+      module top_module( output one);
+            assign one = 1;
+      endmodule
+
+
+**Problem 1,**
+design a circuit for output port as low without input port.
+
+*Exercise:
+      module top_module(output zero);
+            assign zero=0;
+      endmodule
+
+
+**Problem 2,3 (wire, wire4),**
+Theory: wire in verliog is a one kind of signal with direction, but no storage capability.
+
+design a circuit to make sure signal can be delivered from module input port to module output port.
+*Exercise:
+      module top_module (a, b);
+            input a;
+            output b;
+                  assign b=a; // 將a賦值給b
+      endmodule
+
+design a circuit to deliver three input ports signal to four output ports.
+*Exercise:
+   module top_module (a, b, c, w, x, y, z);
+      input a, b, c;
+      output w, x, y, z;
+         assign w=a, x=b, y=b, z=c;
+   endmodule
+
+
+**Problem 4 (Inverter)**
+design a inverter circuit.
+*Exercise:
+   module top_module (a, b);
+     intput a;
+     output b;
+            assign b=(!a);
+   endmodule
+
+
+**Problem 5 (ANDGate)**
+design a AND gate circuit.
+*Exercise:
+   module top_module (a,b, out);
+      input a, b;
+      output out;
+         assign out=a&b;
+   endmodule
+
+
+**Problem 6 (NORGate)**
+design a NOR gate circuit.
+*Exercise:
+   module top_module (a, b, out);
+      input a, b;
+      output out;
+         assign out = ~ (a|b);
+   endmodule
+
+
+**Problem 7 (XNOR gate)**
+Theory: XOR, output as high once our input is odd quantity high. XNOR=~XOR
+
+design a XNOR gate circuit.
+*Exercise:
+   module top_module (a,b,out);
+      input a, b;
+      output out;
+         assign out=~(a^b);
+   endmodule
+
+
+**Problem 8 (Declare wire)**
+Theory: Once components become complex, we will need wires to connect internal components together.
+
+sourece: https://hdlbits.01xz.net/wiki/Wire_decl
+
+design a wire to connect two inverter as a buffer function.
+*Exercise:
+   module top_module (a, b);
+      input a;
+      output b;
+         wire not_in; //declare a wire named not_in
+            assign b= (!not_in);
+            assing not_in= (!a);
+   endmodule
+
+design a circuit to meet above link question.
+*Exercise:
+   module top_module(
+      input a,
+      input b,
+      input c,
+      input d,
+      output out,
+      output out_n   ); 
+         wire AND_1, AND_2;
+         assign AND_1= a&b;
+         assign AND_2= c&d;
+         assign out= AND_1|AND_2;
+         assign out_n=(!out);
+   endmodule
+
+
+**Problem 9 (7458 chip)**
+Theory: The 7458 chip is a chip with 4 AND gates and 2 OR gates.
+
+Sourece: https://hdlbits.01xz.net/wiki/7458
+Using two different methods to target above source problem, one is using assign statement to drive each of output wires. The other is declaring four wires for use as intermidiate signals.
+
+Exercise 9-1:
+   module top_module ( 
+      input p1a, p1b, p1c, p1d, p1e, p1f,
+      output p1y,
+      input p2a, p2b, p2c, p2d,
+      output p2y );
+         assign p1y= (p1a&p1b&p1c)|(p1d&p1e&p1f);
+         assign p2y= (p2a&p2b)|(p2c&p2d);
+   endmodule
+
+Exercise 9-2:
+   module top_module ( 
+      input p1a, p1b, p1c, p1d, p1e, p1f,
+      output p1y,
+      input p2a, p2b, p2c, p2d,
+      output p2y );
+         wire AND_1, AND_2, AND_3, AND_4;
+    	 assign AND_1=p1a&p1b&p1c, AND_2=p1d&p1e&p1f, AND_3=p2a&p2b, AND_4=p2c&p2d;
+    	 assign p1y=AND_1|AND_2, p2y=AND_3|AND_4;
+   endmodule
