@@ -1,0 +1,25 @@
+**Problem26(Carry select adder instend of rippler adder)**
+
+Purpose: Due to ripple adder is too slow to calculate, using carry select adder to solve the problem.
+
+Source:https://hdlbits.01xz.net/wiki/Module_cseladd
+
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+  
+    wire cout1;
+    wire [31:16] sum0;
+    wire [31:16] sum1;
+    
+    add16 al(a[15:0],b[15:0],1'b0,sum[15:0],cout1);
+    add16 ah0(a[31:16],b[31:16],1'b0,sum0[31:16],);
+    add16 ah1(a[31:16],b[31:16],1'b1,sum1[31:16],);
+    
+    assign sum[31:16] = cout1?sum1:sum0;  
+//mux用問號operator實現。當cout1==1時,則將冒號前的sum1賦予給sum [31:16]
+//cout1==0時,則將冒號後的sum0賦予給sun[31:16]
+
+endmodule
