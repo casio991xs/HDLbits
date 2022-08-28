@@ -1,0 +1,61 @@
+**Problem 24 (Module Add)**
+Instantiate two of them(16 bits adder) to create a 32-bit adder. One add16 computes the lower 16 bits and the other computes upper 16 bits.
+
+*Exercise (By Name)
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+	wire cout1;
+    
+    add16 add1(.a(a[15:0]),
+               .b(b[15:0]),
+               .cin(0),
+               .sum(sum[15:0]),
+               .cout(cout1)
+              );
+    add16 add2(.a(a[31:16]),
+               .b(b[31:16]),
+               .cin(cout1),
+               .sum(sum[31:16])
+              );
+    
+endmodule
+
+*Exercise (By Order)
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+	wire cout1;
+    
+    add16 add1(a[15:0], b[15:0], 0, sum[15:0], cout1);
+    add16 add2(a[31:16], b[31:16], cout1, sum[31:16]);
+endmodule
+
+
+**Problem 25 (Module Fadd)**
+Creating a circuit with two levels of hierachy. For top_module will instantiate two copies of add16, each of which will instantiate 16 copies of add1.
+
+source:https://hdlbits.01xz.net/wiki/Module_fadd
+
+*Exercise:
+module top_module (
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+	wire cout1;
+    add16 a1(a[15:0], b[15:0], 1'b0, sum[15:0], cout1);
+    add16 a2(a[31:16], b[31:16], cout1, sum[31:16]);
+endmodule
+
+module add1 ( input a, input b, input cin,   output sum, output cout );
+    assign cout=(a&cin)|(b&cin)|(a&b);
+    assign sum=a^b^cin;
+
+// Full adder module here
+
+endmodule
