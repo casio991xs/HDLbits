@@ -1,0 +1,55 @@
+**Problem 19 (Modules)**
+Connecting signals to module's ports, by name and by order.
+
+Source: https://hdlbits.01xz.net/wiki/Module
+
+*Exercise (By name):
+module top_module ( input a, input b, output out );
+
+    mod_a U1(.in1(a),  //呼叫mod_a且命名為U1, 並將U1的in1與top_modue的a做連結
+		     .in2(b), 
+		     .out(out));
+endmodule
+
+*Exercise (By order):
+module top_module ( input a, input b, output out );
+
+    mod_a U1(a, b, out);
+  //呼叫mod_a且命名為U1,並依mod_a的命名順序將top_module的線依序放入mod_a的順序
+
+endmodule
+
+
+**Problem 20 (Connecting Signals to module's ports by order)**
+
+*Exercise:
+module top_module ( 
+    input a, 
+    input b, 
+    input c,
+    input d,
+    output out1,
+    output out2
+);
+    mod_a U1 (out1, out2, a, b, c, d);
+endmodule
+
+
+**Problem 21 (Connecting signals to module's ports by name)**
+
+*Exercise:
+module top_module ( 
+    input a, 
+    input b, 
+    input c,
+    input d,
+    output out1,
+    output out2
+);
+    mod_a U1(.in1(a),
+             .in2(b),
+             .in3(c),
+             .in4(d),
+             .out1(out1),
+             .out2(out2));
+endmodule
