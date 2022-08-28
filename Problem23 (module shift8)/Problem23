@@ -1,0 +1,59 @@
+**Problem 23 (Module shift8)**
+
+Purpose: Instantiate thre of them (8 bits DFF), then chain them together to make 8-bits wide shift registor of length 3.
+
+Source:https://hdlbits.01xz.net/wiki/Module_shift8
+
+*Exercise(By Name):
+module top_module ( 
+    input clk, 
+    input [7:0] d, 
+    input [1:0] sel, 
+    output [7:0] q 
+);
+    wire [7:0]out1, out2, out3;
+    
+    my_dff8 D1(.d(d),
+               .clk(clk),
+               .q(out1)
+              );
+    my_dff8 D2(.d(out1),
+               .clk(clk),
+               .q(out2)
+              );
+    my_dff8 D3(.d(out2),
+               .clk(clk),
+               .q(out3)
+              );
+    
+    always @(*)
+        case(sel)
+            2'b00: q=d;
+            2'b01: q=out1;
+            2'b10: q=out2;
+            2'b11: q=out3;
+        endcase
+endmodule
+
+*Exercise(By Order):
+module top_module ( 
+    input clk, 
+    input [7:0] d, 
+    input [1:0] sel, 
+    output [7:0] q 
+);
+    wire [7:0] out1, out2, out3;
+    my_dff8 D1 (clk, d, out1);
+    my_dff8 D2 (clk, out1, out2);
+    my_dff8 D3 (clk, out2, out3);
+    
+    always @(*)
+        case(sel)
+            2'b00: q=d;
+            2'b01: q=out1;
+            2'b10: q=out2;
+            2'b11: q=out3;
+        endcase
+endmodule
+
+
