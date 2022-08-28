@@ -1,0 +1,21 @@
+**Problem27 (module Addsub)**
+
+Source: https://hdlbits.01xz.net/wiki/Module_addsub
+
+Purpose: Designing an add-subtractor
+
+Exercise: 
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    input sub,
+    output [31:0] sum
+);
+	wire cout1;
+    wire [31:0] b_XOR;
+    assign b_XOR=b^{32{sub}}; // 跟"b_XOR=b^sub"的差異
+    
+    add16 AD1(a[15:0], b_XOR[15:0], sub, sum[15:0], cout1);
+    add16 AD2(a[31:16], b_XOR[31:16], cout1, sum[31:16],);
+    
+endmodule
