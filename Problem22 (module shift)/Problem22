@@ -1,0 +1,16 @@
+**Problem 22 (Three modules)**
+
+Design a combination circuit to serial thre DFF module.
+
+Source:https://hdlbits.01xz.net/wiki/Module_shift
+
+*Exercise:
+module top_module ( input clk, input d, output q );
+    wire a, b;  //declare wire a, b to connect modules.
+ 	            // 对my_dff进行了三次实例化，用了三个不用的名字 (d1, d2, and d3).
+	            // 端口使用了位置连接的方式( input clk, input d, output q)
+    my_dff d1 (clk, d, a); 
+    my_dff d2 (clk, a, b);
+    my_dff d3 (clk, b, q);
+
+endmodule
