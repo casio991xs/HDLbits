@@ -1,0 +1,80 @@
+**Problem43 (Wire)**
+
+Purpose: lnstantiate a wire.
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4h
+
+Exercise:
+module top_module (
+    input in,
+    output out);
+      assign out=in;
+endmodule
+
+
+**Problem44 (GND)**
+
+Purpose: Lnstantiate a GND signal by specific signal
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4i
+
+Exercise:
+module top_module (
+    output out);
+    
+    assign out=1'b0;
+
+endmodule
+
+
+**Problem45 (NOR)**
+
+Purpose:Implement XOR logic circuit
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4e
+
+Exercise:
+module top_module (
+    input in1,
+    input in2,
+    output out);
+    assign out= ~(in1|in2);
+endmodule
+
+
+**Problem46 (Abother Gate)**
+
+Purpose: Implement the specific circuit
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4f
+
+Exercise:
+module top_module (
+    input in1,
+    input in2,
+    output out);
+    assign out= (in1&!in2);
+endmodule
+
+
+**Problem47 (Two gates)**
+
+Purpose: Implement the specific circuit
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4g
+
+Exercise:
+module top_module (
+    input in1,
+    input in2,
+    input in3,
+    output out);
+    
+    wire l1;
+    	assign l1=~(in1^in2);
+    	assign out=l1^in3;
+
+endmodule
+
+
+
