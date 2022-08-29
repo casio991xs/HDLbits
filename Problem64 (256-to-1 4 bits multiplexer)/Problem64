@@ -1,0 +1,24 @@
+**Problem 64 (256-to-1 {4 bits} multiplexer)**
+Create a 4-bit wide, 256-to-1 multiplexer. The 256 4-bit inputs are all packed into a single 1024-bit input vector. sel=0 should select bits in[3:0], sel=1 selects bits in[7:4], sel=2 selects bits in[11:8], etc.
+
+Source:https://hdlbits.01xz.net/wiki/Mux256to1v
+
+Exercise:
+module top_module( 
+    input [1023:0] in,
+    input [7:0] sel,
+    output reg [3:0] out );
+    
+    integer i;
+    
+    always @(*)begin
+        for (i=0; i<256; i=i+1)begin
+            if (sel==i)
+                out=in[4*i+:4];  //因為合成器不擅長figure out bits的寬度,所以這樣寫"out=in[4*i+3: i*4]"會出現 is not constant的error,所以verilog-2001加入了bits slicing的方式。//從4i開始,往高bit選擇4個bits
+
+                                        //assign out = in[sel*4 +: 4];// 从 sel*4 开始，选择比特序号大于sel*4 的 4 位比特，相当于[sel*4+3:sel*4]
+                                       //assign out = in[sel*4+3 -: 4];	// 从 sel*4+3 开始，选择比特序号小于 sel*4+3 的 4 位比特，相当于[sel*4+3:sel*4]
+        end
+    end
+
+endmodule
