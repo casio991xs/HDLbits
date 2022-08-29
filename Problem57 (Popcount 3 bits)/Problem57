@@ -1,0 +1,26 @@
+**Problem 57 (popcount-3 bits)**
+
+Purpose:
+Population count circuit used to count the numbr of "1" in an input vector.
+Building a population count circuit to count the 255-bit input vector.
+
+Source:https://hdlbits.01xz.net/wiki/Popcount3
+
+Exercise:
+module top_module( 
+    input [2:0] in,
+    output [1:0] out );
+    integer i;
+    
+    always @(*)begin
+        out=2'b00;
+        for (i=0; i<3; i=i+1)begin
+            if (in[i]==1'b1)
+                out=out+1'b1;
+            else
+                out=out+1'b0;
+        end
+    end
+        
+
+endmodule
