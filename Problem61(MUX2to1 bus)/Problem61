@@ -1,0 +1,41 @@
+**Problem61 (MUX2to1 bus)**
+
+Purpose: Create a 100-bit wide, 2-to-1 multiplexer. When sel=0, choose a. When sel=1, choose b.
+
+Source:https://hdlbits.01xz.net/wiki/Mux2to1v
+
+Exercise(Thenary operator):
+module top_module( 
+    input [99:0] a, b,
+    input sel,
+    output [99:0] out );
+	assign out=sel?b:a;
+endmodule
+
+Exercise(if statement):
+module top_module( 
+    input [99:0] a, b,
+    input sel,
+    output [99:0] out );
+
+    always @(*)begin
+        if(sel)
+            out<=b;
+        else
+            out<=a;
+    end
+endmodule
+
+Exercise(case statement):
+module top_module( 
+    input [99:0] a, b,
+    input sel,
+    output [99:0] out );
+		
+    always @(*)begin
+        case(sel)
+            1'b0: out=a;
+            1'b1: out=b;
+        endcase
+    end
+endmodule
