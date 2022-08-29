@@ -1,0 +1,35 @@
+always @(*) begin
+   if (condition) begin
+      out=x;
+   end
+   else begin
+      out=y;
+   end
+end
+
+Purpose: Above always block is equivalent to using a continuous assignment with a conditional operator.
+
+assign out=(condition) ? x : y ;  // condition == 1, x=out. Reverse(condition=0), x=y
+
+source: https://hdlbits.01xz.net/wiki/Always_if
+
+Exercise:
+// synthesis verilog_input_version verilog_2001
+module top_module(
+    input a,
+    input b,
+    input sel_b1,
+    input sel_b2,
+    output wire out_assign,
+    output reg out_always   ); 
+    
+    assign out_assign = sel_b1? sel_b2? b:a :a ;
+    
+    always @(*)
+        if (sel_b1&sel_b2)
+            out_always=b;
+    	else
+            out_always=a;
+        
+
+endmodule
