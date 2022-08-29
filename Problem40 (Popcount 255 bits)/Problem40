@@ -1,0 +1,25 @@
+**Problem 40 (Popcount)**
+
+Purpose:
+Population count circuit used to count the numbr of "1" in an input vector.
+Building a population count circuit to count the 255-bit input vector.
+
+Source:https://hdlbits.01xz.net/wiki/Popcount255
+
+Exercise:
+module top_module( 
+    input [254:0] in,
+    output reg[7:0] out );  //out會在always block內使用,故需宣告成reg
+    integer i;
+    
+    always @(*)begin
+         out=8'b00000000;  //將out做清0的動作。 因為是reg,所以不能用assign來賦值.需直接賦值(blocking assignment)
+        for (i=0; i<=254; i=i+1)begin
+            if(in[i]==1'b1) //檢查input的第0個bit是否為1,是的話則將out+1,不是的話則將out+0。之後檢查input的第1個bit
+                out=out+1'b1;
+            else
+                out=out+1'b0;
+        end
+    end
+
+endmodule
