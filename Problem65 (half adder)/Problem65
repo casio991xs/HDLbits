@@ -1,6 +1,6 @@
 **Problem65 (half adder)
 
-Purpose:design a hall adder.
+Purpose:design a half adder(full adder w/o cin.
 
 Source:https://hdlbits.01xz.net/wiki/Hadd
 
