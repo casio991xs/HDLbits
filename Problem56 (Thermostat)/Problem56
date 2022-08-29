@@ -1,0 +1,20 @@
+**Problem 56 (Thermostat)**
+
+Theory:思考角度,以output在什麼情況下是1(turn on)下去思考
+
+Source: https://hdlbits.01xz.net/wiki/Thermostat
+
+Exercise:
+module top_module (
+    input too_cold,
+    input too_hot,
+    input mode,
+    input fan_on,
+    output heater,
+    output aircon,
+    output fan
+); 
+	assign heater=too_cold&mode;
+    assign aircon=too_hot&(!mode);
+    assign fan=(aircon|heater|fan_on);
+endmodule
