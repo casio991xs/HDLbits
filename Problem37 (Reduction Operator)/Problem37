@@ -1,0 +1,24 @@
+**Problem 37 (Reduction operator)**
+
+Theory: Using reduction operator instead of adding all of bits to a vector.
+Reduction operator can do AND, OR and XOR of the bits of a vector.
+
+語法: 
+& a[3:0]  // a[3]&a[2]&a[1]&a[0]. Equivalant to a[3:0]==4'hf
+| b[3:0]   // b[3]|b[2]|b[1]|b[0]. Equivalant to b[3:0]==4'h0
+^c[2:0]   // c[2]^c[1]^c[0]
+
+Note:
+Parity checking is used as a simple method of detecting errors when transmitting data though an imperfect channel. Creating a circut that will compute a parity bit for a 8-bit byte (adding extra 9th bit to the byte). We will use "even" parity, where the parity bit is just the XOR of all 8 data bits.
+
+8'b01100100      //原數據
+9'b01100100_0  //奇數據
+9'b01100100_1  // 偶數據
+
+Exercise:
+module top_module (
+    input [7:0] in,
+    output parity); 
+
+    	assign parity= ^in;
+endmodule
