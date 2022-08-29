@@ -1,0 +1,24 @@
+**Problem 52 (Implement the specific function)**
+
+Purpose: function, z = (x^y) & x.
+
+Source:https://hdlbits.01xz.net/wiki/Mt2015_q4a
+
+Exercise:
+module top_module (input x, input y, output z);
+
+    assign z=(x^y)&x;
+endmodule
+
+
+**Problem 53 (Implement the specific function, using K-map to optimize the circuit)**
+
+Purpose: Implemetn the specific funciton.
+
+Source:https://hdlbits.01xz.net/wiki/Mt2015_q4b
+
+Exercise:
+module top_module ( input x, input y, output z );
+    assign z=(!x&!y)+(x&y);
+endmodule
+
