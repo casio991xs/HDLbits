@@ -1,0 +1,18 @@
+**Problem 38(Reduction Operator with 100 inputs)**
+
+Purpose: Build a combination circuit with 100 inputs. in[99:0]
+
+Source:https://hdlbits.01xz.net/wiki/Gates100
+
+Exercise:
+module top_module( 
+    input [99:0] in,
+    output out_and,
+    output out_or,
+    output out_xor 
+);
+    assign out_and=&in;
+    assign out_or=|in;
+    assign out_xor=^in;
+    
+endmodule
