@@ -1,0 +1,15 @@
+**Problem50 (Truth table)**
+
+Purpose:: 3個input,所以卡諾圖會有8個判斷結果,且鄰近的input一次只能改一個,隨後就可以得到Y=x3bar and x2+x3 and x1.
+
+Source:https://hdlbits.01xz.net/wiki/Truthtable1
+
+Exercise:
+module top_module( 
+    input x3,
+    input x2,
+    input x1,  // three inputs
+    output f   // one output
+);
+    assign f= ~(x3)&x2|x3&x1;
+endmodule
