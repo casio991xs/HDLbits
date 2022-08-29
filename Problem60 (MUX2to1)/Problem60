@@ -1,0 +1,32 @@
+**Problem 60 (MUX2to1)**
+
+Exercise(三元運算):
+module top_module( 
+    input a, b, sel,
+    output out ); 
+	assign out=sel? b:a;  //sel==true時,回傳b給out,反之則回傳a
+endmodule
+
+Exercise(if statement):
+module top_module( 
+    input a, b, sel,
+    output out ); 
+    always @(*)begin
+        if (sel)    //當sel==trun時,將b賦值給out
+            out=b;
+        else
+            out=a;
+    end
+endmodule
+
+Exercise(case statement):
+module top_module( 
+    input a, b, sel,
+    output out ); 
+    always @(*)begin
+        case (sel)                   //將sel作為判斷
+            1'b0: out=a;          //若sel為0,則out=a;
+            1'b1: out=b;
+        endcase
+    end
+endmodule
