@@ -1,0 +1,17 @@
+### Problem55 (Ringer)
+
+Purpose:設計一個電話的來電狀況,若有來電時手機不是鈴聲就是振動。如果震動,vibrate_mode=1否則則是鈴聲。
+
+Source:
+
+Exercise:
+module top_module (
+    input ring,    //判斷是否有來電
+    input vibrate_mode,   //判斷是否為震動模式
+    output ringer,       // Make sound
+    output motor         // Vibrate
+);
+    assign ringer=ring?(vibrate_mode?0:1):0;
+    assign motor=vibrate_mode?(ring?1:0):0;
+
+endmodule
