@@ -1,0 +1,25 @@
+**Problem 77 (K-map with 4 bits width)**
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q3
+
+Exercise:
+module top_module (
+    input [4:1] x, 
+    output f );
+    assign f=(!x[1]&x[3])|(x[1]&x[2]&!x[3]&x[4]);
+endmodule
+
+
+**Problem 78 (K-map with 4 bits width)**
+
+Source:https://hdlbits.01xz.net/wiki/Exams/2012_q1g
+
+Exercise:
+module top_module (
+    input [4:1] x,
+    output f
+); 
+    assign f=(!x[1]&x[3])|(x[2]&x[3]&x[4])|(!x[2]&!x[4]);
+
+endmodule
+
