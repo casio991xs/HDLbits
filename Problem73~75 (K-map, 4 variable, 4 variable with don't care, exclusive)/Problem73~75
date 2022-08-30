@@ -1,0 +1,44 @@
+**Problem73 (K-map, 4 variable)**
+
+source:https://hdlbits.01xz.net/wiki/Kmap2
+
+Exercise:
+module top_module(
+    input a,
+    input b,
+    input c,
+    input d,
+    output out  ); 
+    assign out=(!a&!d)|(!b&!c)|b&c&d|a&c&d;
+
+endmodule
+
+
+**Problem74 (K-map, 4 variable with don't care)**
+
+Source:https://hdlbits.01xz.net/wiki/Kmap3
+
+Exercise:
+module top_module(
+    input a,
+    input b,
+    input c,
+    input d,
+    output out  ); 
+    assign out= a|(!b&c);
+endmodule
+
+
+**Problem75 (K-map, 4 variable-exclusive)**
+
+Source:https://hdlbits.01xz.net/wiki/Kmap4
+
+Exercise:
+module top_module(
+    input a,
+    input b,
+    input c,
+    input d,
+    output out  ); 
+	assign out=a^b^c^d;
+endmodule
