@@ -1,0 +1,103 @@
+**Problem 98 (4 bit counter for 16 bits period)**
+
+目的:建立一個4 bit的計數器來數16 bits,且當reset為1時重置所有data為0
+
+Source:https://hdlbits.01xz.net/wiki/Count15
+
+Exercise:
+module top_module (
+    input clk,
+    input reset,      // Synchronous active-high reset
+    output [3:0] q);
+	
+    always @(posedge clk)begin
+        if(reset)
+          q<=4'b0000;
+        else
+          q<=q+1;
+    end
+    
+endmodule
+
+
+**Problem 99 (4 bit counter for 10 bits period)**
+
+目的:建立一個4 bit的計數器來數10 bits,且當reset為1時重置所有data為0
+
+Source:https://hdlbits.01xz.net/wiki/Count10
+
+Exercise(if...else):
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+    
+    always @(posedge clk)begin
+        if(reset)
+            q<=4'b0000;
+        else if (q<4'b1001)
+            q<=q+1'b1;
+        else
+            q<=4'b0000;
+    end
+
+endmodule
+
+Exercise(case):
+module top_module (
+    input clk,
+    input reset,        // Synchronous active-high reset
+    output [3:0] q);
+    
+    always @(posedge clk)begin
+        if(reset)
+            q<=4'b0000;
+        else
+            case(q)
+                4'b0000: q<=q+1'b1;
+                4'b0001: q<=q+1'b1;
+                4'b0010: q<=q+1'b1;
+                4'b0011: q<=q+1'b1;
+                4'b0100: q<=q+1'b1;
+                4'b0101: q<=q+1'b1;
+                4'b0110: q<=q+1'b1;
+                4'b0111: q<=q+1'b1;
+                4'b1000: q<=q+1'b1;
+                default: q<=4'b0000;
+            endcase
+    end
+
+endmodule
+
+**Problem 100 (4 bits counter for 1~10 and reset to 1)**
+
+目的:建立一個4 bit的計數器來數1~10,且當reset為1時重置所有data為1
+
+Source:https://hdlbits.01xz.net/wiki/Count1to10
+
+Exercise:
+module top_module (
+    input clk,
+    input reset,
+    output [3:0] q);
+    
+    always @(posedge clk)begin
+        if (reset)
+            q<=4'b0001;
+        else
+            case(q)
+                4'b0001: q<=q+1'b1;
+                4'b0010: q<=q+1'b1;
+                4'b0011: q<=q+1'b1;
+                4'b0100: q<=q+1'b1;
+                4'b0101: q<=q+1'b1;
+                4'b0110: q<=q+1'b1;
+                4'b0111: q<=q+1'b1;
+                4'b1000: q<=q+1'b1;
+                4'b1001: q<=q+1'b1;
+                default: q<=4'b0001;
+            endcase
+    end
+
+endmodule
+
