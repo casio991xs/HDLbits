@@ -1,0 +1,25 @@
+**Problem 96 (EdgeCapture)**
+
+目的: capturn when the input signal from 1 to 0 within a clock. Capture value will remain 1 until reset active.
+
+Source:https://hdlbits.01xz.net/wiki/Edgecapture
+
+Exercise:
+module top_module (
+    input clk,
+    input reset,
+    input [31:0] in,
+    output [31:0] out
+);
+    reg [31:0]cap;
+    
+    always @(posedge clk)begin
+        cap<=in;
+        if(reset)
+           out<=32'b0;
+        else
+            out<=(~in&cap)|out; //因為是capture 1-->0所以是input signal 取invert, 透過與前級的out結果來取or,迫使out remain在1
+    end
+                
+endmodule
+
