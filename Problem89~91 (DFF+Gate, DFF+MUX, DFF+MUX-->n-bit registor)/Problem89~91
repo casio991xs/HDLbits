@@ -1,0 +1,64 @@
+**Problem 89 (DFF+Gate)**
+
+目的: 製作一個DFF with gate logic
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4d
+
+Exercise:
+module top_module (
+    input clk,
+    input in, 
+    output out);
+    
+    always @(posedge clk)begin
+        out<=in^out;
+    end
+
+endmodule
+
+
+**Problem 90 (DFF+MUX)**
+
+目的: 實踐在top module內的一組DFF+MUX
+
+Source:https://hdlbits.01xz.net/wiki/Mt2015_muxdff
+
+Exercise:
+module top_module (
+	input clk,
+	input L,
+	input r_in,
+	input q_in,
+	output reg Q);
+    wire temp;
+ 
+    assign temp=L?r_in:q_in;
+    always @(posedge clk)begin
+        Q<=temp;
+    end
+
+endmodule
+
+
+**Problem 91 (DFF+MUX-->n-bit register)**
+
+目的:實踐一個stage,包含1個FF跟2個MUX
+
+Source:https://hdlbits.01xz.net/wiki/Exams/2014_q4a
+
+Exercise:
+module top_module (
+    input clk,
+    input w, R, E, L,
+    output Q
+);
+    wire A, B;
+    
+    assign A=E?w:Q;
+    assign B=L?R:A;
+    
+    always @(posedge clk)begin
+        Q<=B;
+    end
+    
+endmodule
