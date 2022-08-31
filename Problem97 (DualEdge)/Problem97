@@ -1,0 +1,31 @@
+**Problem 97 (DualEdge)**
+
+目的:設計一個可以dual edge trigger的DFF
+
+Source:https://hdlbits.01xz.net/wiki/Dualedge
+
+Exercise:
+module top_module (
+    input clk,
+    input d,
+    output q
+);
+    reg q1, q2;
+    assign q=clk? q1:q2;
+    
+    always @(posedge clk)begin
+        q1<=d;
+    end
+    
+    always @(negedge clk)begin
+        q2<=d;
+    end
+    
+endmodule
+
+電路圖:
+
+
+![Image](https://user-images.githubusercontent.com/18546795/186122425-22c23185-4c99-449f-bc77-e6df96920e2a.png)
+
+
