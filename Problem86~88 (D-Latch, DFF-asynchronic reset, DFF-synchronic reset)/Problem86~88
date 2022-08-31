@@ -1,0 +1,76 @@
+**Problem 86 (D-latch)**
+
+目的:製作一鎖相器(D-latch,透過enable來開啟; DFF則是透過clk)
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4a
+
+Exercise1:
+module top_module (
+    input d, 
+    input ena,
+    output q);
+    
+    always @(*)begin
+        if (ena)
+            q<=d;
+    end
+
+endmodule
+
+Exercise2:
+
+module top_module (
+    input d, 
+    input ena,
+    output q);
+	assign q=ena? d:q;
+endmodule
+
+
+![Image](https://user-images.githubusercontent.com/18546795/186478579-b134c549-a98f-45ca-b9c7-1a9b17725090.JPG)
+
+
+**Problem 87 (DFF with asyn reset)**
+
+目的: 製作一非同步reset的DFF
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4b
+
+Exercise:
+module top_module (
+    input clk,
+    input d, 
+    input ar,   // asynchronous reset
+    output q);
+    
+    always @(posedge clk or posedge ar)begin
+        if(ar)
+            q<=1'b0;
+        else 
+            q<=d;
+    end
+    
+endmodule
+
+
+**Problem 88 (DFF with Synchronic reset)**
+
+目的: 製作一同步reset的DFF
+
+Source:https://hdlbits.01xz.net/wiki/Exams/m2014_q4c
+
+Exercise:
+module top_module (
+    input clk,
+    input d, 
+    input r,   // synchronous reset
+    output q);
+    
+    always @(posedge clk)begin
+        if (r)
+            q<=1'b0;
+        else
+            q<=d;
+    end
+            
+endmodule
