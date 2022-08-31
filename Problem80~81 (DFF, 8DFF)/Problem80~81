@@ -1,0 +1,37 @@
+**Problem80 (DFF)**
+
+Purpose: Design a DFF with positive edge clk trigger 
+
+Source:https://hdlbits.01xz.net/wiki/Dff
+
+Exercise:
+module top_module (
+    input clk,    // Clocks are used in sequential circuits
+    input d,
+    output reg q );//
+
+    // Use a clocked always block
+    //   copy d to q at every positive edge of clk
+    //   Clocked always blocks should use non-blocking assignments
+    always @(posedge clk)begin
+        q<=d;
+    end
+endmodule
+
+
+**Problem81 (DFFs)**
+
+Puepose: Design 8DFFs. All flip flops are triggered by positive clk edge.
+
+Source:https://hdlbits.01xz.net/wiki/Dff8
+
+Exercise:module top_module (
+    input clk,
+    input [7:0] d,
+    output [7:0] q
+);
+    always @(posedge clk)begin
+        q[7:0]<=d[7:0];
+    end
+
+endmodule
