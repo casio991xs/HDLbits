@@ -1,0 +1,66 @@
+**Problem 82 (DFF8r)**
+// active high Synchronous reset (同步reset),當reset為High時,則將DFF重設為0
+
+source:https://hdlbits.01xz.net/wiki/Dff8r
+
+Exerrcise:
+module top_module (
+    input clk,
+    input reset,            // Synchronous reset
+    input [7:0] d,
+    output [7:0] q
+);
+    always @(posedge clk)begin
+        if(reset)
+            q<=8'b0;
+		else
+            q<=d;
+    end
+    
+endmodule
+
+
+**Problem 83 (DFF8p)**
+
+Source:https://hdlbits.01xz.net/wiki/Dff8p
+
+Exercise: 
+module top_module (
+    input clk,
+    input reset,
+    input [7:0] d,
+    output [7:0] q
+);
+    
+    always @(negedge clk)begin
+        if(reset)
+            q<=8'b00110100;
+        else
+            q<=d;
+    end
+        
+
+endmodule
+
+
+**Problem 84 (DFF8ar)**
+
+Source:https://hdlbits.01xz.net/wiki/Dff8ar
+
+Exercise:
+module top_module (
+    input clk,
+    input areset,   // active high asynchronous reset
+    input [7:0] d,
+    output [7:0] q
+);
+    always @(posedge clk or posedge areset)begin
+        if(areset)
+            q<=8'b0;
+        else
+            q<=d;
+    end
+
+endmodule
+
+
