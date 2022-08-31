@@ -1,0 +1,54 @@
+**Problem 94 (Singal edge detection)**
+
+目的: 設計一個edge檢測電路來判斷這個8-bit vector的變化。
+
+Edge檢測電路使用時機: 當input是非同步訊號,且須與FSM做同步處理。則需透過edge檢測電路,使input與clock同步,如此一來才能與FSM一起運作。
+
+Source:https://hdlbits.01xz.net/wiki/Edgedetect
+
+Exercise:
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] pedge
+);
+    reg [7:0]A;
+    
+    always @(posedge clk)begin
+        A<=in;
+        pedge<=(in&~A);
+    end
+        
+endmodule
+
+![Image](https://user-images.githubusercontent.com/18546795/186084051-716c82d9-4fa7-490b-95fe-8c66a827d41a.jpg)
+
+
+
+
+**Problem 95 (Both edge detection)**
+
+目的:設計一個雙端邊界偵測的線路,用來判斷8-bit vector的變化
+
+Source:https://hdlbits.01xz.net/wiki/Edgedetect2
+
+Exercise:
+module top_module (
+    input clk,
+    input [7:0] in,
+    output [7:0] anyedge
+);
+    
+    reg [7:0]A;
+    
+    always @(posedge clk)begin
+        A<=in;
+        anyedge<=A^in;
+    end
+
+endmodule
+
+
+
+![Image](https://user-images.githubusercontent.com/18546795/186085719-634a31af-c6ca-4cc3-ad70-2c18555a02dc.png)
+
