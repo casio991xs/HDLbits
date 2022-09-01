@@ -11,7 +11,9 @@ module top_module (
     output ringer,       // Make sound
     output motor         // Vibrate
 );
-    assign ringer=ring?(vibrate_mode?0:1):0;
+    assign ringer=ring?(vibrate_mode?0:1):0;   //ring==0-->ringer=0
+                                               //ring==1 &&vibrate_mode==1-->ringer=0
+                                               //ring==1 &&vibrate_mode==0-->ringer=1
     assign motor=vibrate_mode?(ring?1:0):0;
 
 endmodule
