@@ -4,7 +4,7 @@ Purpose:設計一個電話的來電狀況,若有來電時手機不是鈴聲就�
 
 Source:
 
-Exercise:
+Exercise1-Thenary Operator:
 module top_module (
     input ring,    //判斷是否有來電
     input vibrate_mode,   //判斷是否為震動模式
@@ -14,4 +14,17 @@ module top_module (
     assign ringer=ring?(vibrate_mode?0:1):0;
     assign motor=vibrate_mode?(ring?1:0):0;
 
+endmodule
+
+
+Exercise2-題目直譯:
+module top_module (
+    input ring,
+    input vibrate_mode,
+    output ringer,       // Make sound
+    output motor         // Vibrate
+);
+
+    assign ringer= ring&(!vibrate_mode); //有人打且非振動時響鈴
+    assign motor= ring&vibrate_mode;	//有人打且為震動時震動
 endmodule
