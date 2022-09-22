@@ -1,0 +1,27 @@
+**Problem 101 (4 bits counter to 1~9 under enable pin)**
+
+目的:建立一個4 bit的計數器來數0~9(由enable pins來control),且當reset為1時重置所有data為0
+
+Source: https://hdlbits.01xz.net/wiki/Countslow
+
+module top_module (
+    input clk,
+    input slowena,
+    input reset,
+    output [3:0] q);
+    
+    reg [3:0] q_1; //因為有slowena做為counter的enable,所以需額外宣告此reg來放資料
+    
+    always @(posedge clk)begin
+        if (reset)
+            q_1<=4'b0;
+        else if (q_1<4'b1001&&slowena==1)
+               q_1<=q_1+1'b1;   //counter小於9且在enable開啟情況下之前都要做+1
+        else if (q_1<=4'b1001&&slowena==0)
+               q_1<=q_1;		//使counter在enable未開啟時可以keep在9
+        else
+            q_1<=4'b0;			//使counter大於9時,可以直接被歸零
+end
+		assign q=q_1;
+            
+endmodule
