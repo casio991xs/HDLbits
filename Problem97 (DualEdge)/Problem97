@@ -11,7 +11,6 @@ module top_module (
     output q
 );
     reg q1, q2;
-    assign q=clk? q1:q2;
     
     always @(posedge clk)begin
         q1<=d;
@@ -20,6 +19,8 @@ module top_module (
     always @(negedge clk)begin
         q2<=d;
     end
+    
+    assign q=clk? q1:q2;  //因為做雙邊edge trigger,所以需要額外使用q1, q2來承接不同trigger時的結果. (分開存取,在使用clk level做trigger來存入不同data)
     
 endmodule
 
