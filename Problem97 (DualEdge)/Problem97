@@ -1,6 +1,6 @@
 **Problem 97 (DualEdge)**
 
-目的:設計一個可以dual edge trigger的DFF
+目的:設計一個可以dual edge trigger的DFF (因為沒有always @(posedge clk or negedge clk,電路上無法合成,所以要拆開兩個來寫)
 
 Source:https://hdlbits.01xz.net/wiki/Dualedge
 
