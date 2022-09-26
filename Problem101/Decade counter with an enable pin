@@ -4,6 +4,7 @@
 
 Source: https://hdlbits.01xz.net/wiki/Countslow
 
+>>Exercise_1
 module top_module (
     input clk,
     input slowena,
@@ -25,3 +26,24 @@ end
 		assign q=q_1;
             
 endmodule
+
+
+>>Exercise_2
+module top_module (
+    input clk,
+    input slowena,
+    input reset,
+    output [3:0] q);
+	
+    always @(posedge clk)begin
+        if(reset)
+            q<=4'b0;
+        else if(!slowena)
+            q<=q;
+        else if(q==4'd9)
+            q<=4'b0;
+        else q<=q+1'b1;
+    end
+endmodule
+
+	
