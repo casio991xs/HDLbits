@@ -7,8 +7,8 @@ Source: https://hdlbits.01xz.net/wiki/Module
 module top_module ( input a, input b, output out );
 
     mod_a U1(.in1(a),  //呼叫mod_a且命名為U1, 並將U1的in1與top_modue的a做連結
-		     .in2(b), 
-		     .out(out));
+	     .in2(b), 
+	     .out(out));
 endmodule
 
 *Exercise (By order):
